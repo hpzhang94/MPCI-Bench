@@ -29,3 +29,5 @@ An image filtering stage is applied to select privacy-relevant images. The list 
 ### Step 2: Filter Files
 After extraction, Filter the images according to the IDs provided in `bench/required_image_ids.json`. Place the filtered images and their corresponding annotations into:
 `bench/vispr/train2017/`
+
+We will relase the data construction code soon.
