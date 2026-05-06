@@ -1,0 +1,44 @@
+# MPCI-Bench dependencies
+# Install with:  pip install -r requirements.txt
+# Or with uv:    uv sync   (recommended — resolves all deps including procoder)
+#
+# Note: procoder must be installed from source:
+#   pip install git+https://github.com/dhh1995/PromptCoder.git
+# (required only for Task 3a: agent final-action generation)
+
+# Core ML
+torch>=2.5.0
+torchvision>=0.20.0
+transformers>=4.45.0
+accelerate>=1.12.0
+
+# VLM / inference
+vllm>=0.12.0
+qwen-vl-utils>=0.0.8
+sentencepiece>=0.2.1
+bitsandbytes>=0.45.5
+
+# API clients
+openai>=1.99.1
+anthropic>=0.7.0
+
+# Data / utils
+numpy>=1.26.4
+pandas>=2.0.0
+python-dotenv==1.0.0
+tqdm>=4.0.0
+Pillow>=10.0.0
+
+# Prompt construction (Task 3a only)
+# procoder @ git+https://github.com/dhh1995/PromptCoder.git
+
+# Analysis / visualization
+matplotlib>=3.10.8
+seaborn>=0.13.2
+scikit-learn>=1.7.2
+scipy>=1.15.3
+statsmodels>=0.14.6
+
+# Human eval web app (optional)
+flask>=3.0.0
+streamlit>=1.52.1

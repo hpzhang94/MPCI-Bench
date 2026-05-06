@@ -1,0 +1,174 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "ml": "http://mlcommons.org/schema/",
+    "cr": "http://mlcommons.org/croissant/",
+    "cr:RecordSet": {"@type": "cr:RecordSet"},
+    "cr:Field": {"@type": "cr:Field"},
+    "cr:FileObject": {"@type": "cr:FileObject"},
+    "cr:FileSet": {"@type": "cr:FileSet"},
+    "cr:Extract": {"@type": "cr:Extract"},
+    "cr:Join": {"@type": "cr:Join"},
+    "cr:Transform": {"@type": "cr:Transform"},
+    "cr:Source": {"@type": "cr:Source"},
+    "cr:Format": {"@type": "cr:Format"},
+    "cr:Relationship": {"@type": "cr:Relationship"},
+    "dct": "http://purl.org/dc/terms/",
+    "rai": "http://mlcommons.org/schema/rai/"
+  },
+  "@type": "sc:Dataset",
+  "name": "MPCI-Bench",
+  "description": "MPCI-Bench (Multimodal Pairwise Contextual Integrity Benchmark) is a benchmark dataset for evaluating the contextual integrity awareness of language model agents in multimodal scenarios. The benchmark assesses whether VLM agents appropriately handle privacy-sensitive information when making decisions about data transmission across different contexts, recipients, and transmission principles.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://anonymous.4open.science/r/MPCI-Bench-BD63/",
+  "version": "1.0.0",
+  "datePublished": "2026-05-06",
+  "keywords": [
+    "privacy",
+    "contextual integrity",
+    "multimodal",
+    "benchmark",
+    "VLM",
+    "LLM agents",
+    "privacy leakage",
+    "sensitive information"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "Anonymous Authors"
+  },
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "mpci_bench_json",
+      "name": "mpci_bench.json",
+      "description": "Main benchmark dataset in JSON format. Contains 2,052 scenarios (1,026 positive / contextually appropriate + 1,026 negative / contextually inappropriate).",
+      "contentUrl": "mpci_bench/dataset/mpci_bench.json",
+      "encodingFormat": "application/json",
+      "sha256": "713b483bce710b08b45bc8b5b3aa1b1bdc1b0abd0084d9cee0e34ef10c4c474f"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "scenarios",
+      "name": "scenarios",
+      "description": "Privacy-sensitive multimodal agent interaction scenarios.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/name",
+          "name": "name",
+          "description": "Unique scenario identifier. Suffix '_neg' = contextually inappropriate; '_pos' = contextually appropriate.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].name"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/seed/data_type",
+          "name": "seed.data_type",
+          "description": "Type of sensitive data involved in the scenario.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].seed.data_type"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/seed/data_subject",
+          "name": "seed.data_subject",
+          "description": "Role of the individual whose data is being shared.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].seed.data_subject"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/seed/data_sender",
+          "name": "seed.data_sender",
+          "description": "Role of the entity sharing the data.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].seed.data_sender"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/seed/data_recipient",
+          "name": "seed.data_recipient",
+          "description": "Intended recipient of the data.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].seed.data_recipient"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/seed/transmission_principle",
+          "name": "seed.transmission_principle",
+          "description": "The contextual integrity principle governing this transmission.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].seed.transmission_principle"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/seed/contextual_domain",
+          "name": "seed.contextual_domain",
+          "description": "Domain context (e.g., Entertainment, Healthcare, Education).",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].seed.contextual_domain"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/story/content",
+          "name": "story.content",
+          "description": "Full narrative story describing the privacy scenario.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].story.content"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/trace/user_instruction",
+          "name": "trace.user_instruction",
+          "description": "Natural language instruction given to the agent.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].trace.user_instruction"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/trace/executable_trajectory",
+          "name": "trace.executable_trajectory",
+          "description": "ReAct-format agent tool-use trajectory (actions + observations).",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].trace.executable_trajectory"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/trace/final_action",
+          "name": "trace.final_action",
+          "description": "Ground-truth final action the agent should take.",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].trace.final_action"}}
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "scenarios/img_metadata",
+          "name": "img_metadata",
+          "description": "List of associated image metadata (path and VISPR sensitivity label).",
+          "dataType": "sc:Text",
+          "source": {"fileObject": {"@id": "mpci_bench_json"}, "extract": {"jsonPath": "$[*].img_metadata"}}
+        }
+      ]
+    }
+  ],
+  "rai:dataCollection": "Scenarios are constructed from the VISPR dataset (privacy-annotated images) combined with LLM-generated contextual integrity stories and simulated agent trajectories using the ToolEmu framework.",
+  "rai:dataCollectionType": "Synthetic generation grounded in real privacy-sensitive images",
+  "rai:dataUseCases": [
+    "Evaluation of VLM/LLM agent privacy awareness",
+    "Benchmark for contextual integrity understanding",
+    "Research on privacy leakage in multimodal AI systems"
+  ],
+  "rai:dataBiases": "Scenarios are grounded in VISPR images which may over-represent certain demographic groups. Contextual domains are limited to those well-represented in the VISPR taxonomy. LLM-generated stories may reflect biases present in the underlying generation model.",
+  "rai:dataLimitations": [
+    "Images are sourced from VISPR (Flickr Creative Commons); some images may have been removed from the original source.",
+    "Contextual integrity judgments are based on the Nissenbaum framework; other privacy frameworks may yield different ground-truth labels.",
+    "Agent trajectories are simulated, not from real deployments.",
+    "Benchmark does not cover all possible tool ecosystems or cultural privacy norms."
+  ],
+  "rai:personalSensitiveInformation": "Images contain privacy-sensitive visual content (faces, documents, medical indicators, etc.) from the VISPR dataset. The VISPR dataset was collected with Flickr Creative Commons licenses. No real user data or PII is introduced beyond the original VISPR collection."
+}
